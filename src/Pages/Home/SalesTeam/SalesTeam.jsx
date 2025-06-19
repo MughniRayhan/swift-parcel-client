@@ -21,7 +21,8 @@ const brands = [
 
 const SalesTeam = () => {
   return (
-    <section className="bg-gray-100 py-20 px-4 border-b-2 border-dashed border-secondary/60">
+    <section data-aos="fade-up"
+     data-aos-duration="5000" className="bg-gray-100 py-20 px-4 border-b-2 border-dashed border-secondary/60">
       <div className="text-center mb-10">
         <h2 className="text-2xl md:text-3xl font-bold text-secondary">
           We've helped thousands of sales teams

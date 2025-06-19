@@ -3,7 +3,7 @@ import merchant from '../../../assets/location-merchant.png'
 
 function MerchantBe() {
   return (
-   <section className="bg-[url('/assets/be-a-merchant-bg.png')] 
+   <section data-aos="zoom-in" className="bg-[url('/assets/be-a-merchant-bg.png')] 
    bg-secondary py-20 px-12 rounded-3xl">
      <div className='flex flex-col lg:flex-row items-center justify-between gap-4'>
         <div className='lg:w-[44%] w-full'>

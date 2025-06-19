@@ -49,7 +49,8 @@ const services = [
 
 const OurServices = () => {
   return (
-    <section className="py-20 px-4 md:px-10 lg:px-20 bg-secondary rounded-3xl">
+    <section className="py-20 px-4 md:px-10 lg:px-20 bg-secondary rounded-3xl" data-aos="fade-up"
+     data-aos-duration="3000">
       <div className="text-center mb-10">
         <h2 className="text-3xl md:text-4xl font-bold text-white">
           Our Services

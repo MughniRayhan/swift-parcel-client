@@ -9,7 +9,7 @@ function Footer() {
      <li><NavLink>Services</NavLink></li>
     </>
   return (
-    <footer className="footer footer-horizontal footer-center bg-black rounded-3xl mb-10 text-primary-content p-10">
+    <footer className="footer footer-horizontal footer-center bg-black rounded-3xl my-10 text-primary-content p-10">
   <aside>
 <Logo/>
     <p className="sm:text-base text-gray-400 sm:w-[748px] ">
