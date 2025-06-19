@@ -3,6 +3,7 @@ import Banner from '../Banner/Banner'
 import OurServices from '../OurServices/OurServices'
 import SalesTeam from '../SalesTeam/SalesTeam'
 import FeatureCards from '../FeatureCards/FeatureCards'
+import MerchantBe from '../MerchantBe/MerchantBe'
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
         <OurServices/>
         <SalesTeam/>
         <FeatureCards/>
+        <MerchantBe/>
     </div>
   )
 }
