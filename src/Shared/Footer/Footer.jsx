@@ -1,16 +1,27 @@
 import React from 'react'
 import Logo from '../Logo/Logo'
+import { NavLink } from 'react-router'
 
 function Footer() {
+  const listItems = <>
+     <li><NavLink>Home</NavLink></li>
+     <li><NavLink>About Us</NavLink></li>
+     <li><NavLink>Services</NavLink></li>
+    </>
   return (
-    <footer className="footer footer-horizontal footer-center bg-base-100 text-primary-content p-10">
+    <footer className="footer footer-horizontal footer-center bg-black rounded-3xl mb-10 text-primary-content p-10">
   <aside>
 <Logo/>
-    <p className="sm:text-base  sm:w-[748px] ">
+    <p className="sm:text-base text-gray-400 sm:w-[748px] ">
       Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.
     </p>
-    <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
+    <div className="hidden sm:block border-1 border-dashed border-secondary w-full my-5"></div>
+     <div className='flex list-none   items-center justify-center gap-4'>
+    {listItems}
+  </div>
+  <div className="hidden sm:block border-1 border-dashed border-secondary w-full my-5"></div>
   </aside>
+ 
   <nav>
     <div className="grid grid-flow-col gap-4">
       <a>

@@ -26,14 +26,17 @@ const features = [
 const FeatureCards = () => {
   return (
     <section className="py-16 px-4 md:px-10 lg:px-20 bg-gray-100">
+      <h2 className="text-2xl md:text-3xl font-bold text-secondary text-center mb-8">
+          Why Choose Us
+        </h2>
       <div className="space-y-10">
         {features.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col md:flex-row items-center bg-white shadow-md rounded-xl overflow-hidden"
+            className="flex flex-col sm:flex-row items-center bg-white shadow-md rounded-xl overflow-hidden"
           >
              {/* Image */}
-            <div className="w-full  p-6 flex justify-center">
+            <div className=" flex flex-col  sm:flex-row w-full  p-6  justify-center">
               <img
                 src={item.image}
                 alt={item.title}
@@ -41,14 +44,14 @@ const FeatureCards = () => {
               />
 
             {/* Dashed Divider */}
-            <div className="hidden md:block border-l border-dashed border-gray-500  mx-6"></div>
+            <div className="hidden sm:block border-1 border-dashed border-secondary/60  mx-6"></div>
 
               {/* Text Content */}
-            <div className="w-full  p-6 text-center md:text-left">
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+            <div className="w-full  p-6 text-center sm:text-left">
+              <h3 className="text-xl font-extrabold text-secondary mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-600 w-full">{item.description}</p>
+              <p className="text-stone-600 w-full">{item.description}</p>
             </div>
             </div>
           </div>

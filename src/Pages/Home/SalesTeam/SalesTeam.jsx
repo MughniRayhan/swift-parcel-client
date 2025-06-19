@@ -21,14 +21,14 @@ const brands = [
 
 const SalesTeam = () => {
   return (
-    <section className="bg-gray-100 py-12 px-4">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+    <section className="bg-gray-100 py-20 px-4 border-b-2 border-dashed border-secondary/60">
+      <div className="text-center mb-10">
+        <h2 className="text-2xl md:text-3xl font-bold text-secondary">
           We've helped thousands of sales teams
         </h2>
       </div>
 
-      <Marquee direction="right" speed={40} pauseOnHover={true} gradient={false} className="">
+      <Marquee direction="right" speed={40} pauseOnHover={true} gradient={false} >
         {brands.map((logo, index) => (
           <img
             key={index}
