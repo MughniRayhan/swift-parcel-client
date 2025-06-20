@@ -4,11 +4,13 @@ import OurServices from '../OurServices/OurServices'
 import SalesTeam from '../SalesTeam/SalesTeam'
 import FeatureCards from '../FeatureCards/FeatureCards'
 import MerchantBe from '../MerchantBe/MerchantBe'
+import HowItWorks from '../HowItWorks/HowItWorks'
 
 function Home() {
   return (
     <div>
         <Banner/>
+        <HowItWorks/>
         <OurServices/>
         <SalesTeam/>
         <FeatureCards/>
