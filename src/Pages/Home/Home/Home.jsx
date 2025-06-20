@@ -5,6 +5,7 @@ import SalesTeam from '../SalesTeam/SalesTeam'
 import FeatureCards from '../FeatureCards/FeatureCards'
 import MerchantBe from '../MerchantBe/MerchantBe'
 import HowItWorks from '../HowItWorks/HowItWorks'
+import Faq from '../FAQ/Faq'
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
         <SalesTeam/>
         <FeatureCards/>
         <MerchantBe/>
+        <Faq/>
     </div>
   )
 }
