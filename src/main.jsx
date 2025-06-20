@@ -9,7 +9,7 @@ import { RouterProvider } from 'react-router';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className='urbanist-font max-w-7xl mx-auto'>
+    <div className='urbanist-font '>
       <RouterProvider router={router} />
     </div>
   </StrictMode>,
