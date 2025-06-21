@@ -1,12 +1,22 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { Link } from 'react-router';
+import UseAuth from '../../../Hooks/UseAuth';
 
 function Register() {
         const {register, handleSubmit, formState: { errors }} = useForm();
+        const {createUser} = UseAuth()
     
         const onSubmit = (data) => {
             console.log(data);
+            // register
+            createUser(data.email, data.password)
+            .then((result) => {
+                console.log(result.user);
+            })
+            .catch((error) => {
+                console.error(error.message);
+            })
         }
   return (
         <div className=' my-10 sm:w-[70%] mx-auto w-full shadow-lg md:shadow-none'>
@@ -43,7 +53,7 @@ function Register() {
             errors.password?.type === 'minLength' && <span className='text-red-500'>Must have to 6 length</span>
           }
          
-          <button className="btn btn-neutral mt-4 sm:w-[330px]">Register</button>
+          <button className="btn btn-neutral mt-4 sm:w-[330px] bg-primary text-black font-bold border-none">Register</button>
         </fieldset>
           <div>Allready have an account? <Link to='/login' className='text-primary font-semibold underline'>Login</Link></div>
     </form>
