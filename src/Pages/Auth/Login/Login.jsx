@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
 import { Link } from 'react-router';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 function Login() {
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -32,10 +33,11 @@ function Login() {
             errors.password?.type === 'required' && <span className='text-red-500'>Password is required</span>
           }
           
-          <button className="btn btn-neutral mt-4 sm:w-[330px]">Login</button>
-         
+          <button className="btn btn-neutral mt-4 sm:w-[330px] bg-primary  text-black font-bold border-none">Login</button>
+           <div className='mt-2'>Don't have any account? <Link to='/register' className='text-primary font-semibold underline'>Register</Link></div>
+          
+          <SocialLogin/>
         </fieldset>
-         <div>Don't have any account? <Link to='/register' className='text-primary font-semibold underline'>Register</Link></div>
     </form>
     </div>
   )
