@@ -55,7 +55,7 @@ function Register() {
           }
          
           <button className="btn btn-neutral mt-4 sm:w-[330px] bg-primary text-black font-bold border-none">Register</button>
-          <div className='mt-2'>Allready have an account?    <Link to='/login' className='text-primary font-semibold underline'>   Login</Link></div>
+          <div className='mt-2 text-base'>Allready have an account?    <Link to='/login' className='text-primary font-semibold underline'>   Login</Link></div>
          <SocialLogin/>
         </fieldset>
           

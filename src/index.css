@@ -13,3 +13,8 @@
   font-weight: 400;
   font-style: normal;
 }
+
+nav a.active {
+  background: #caeb66;
+  border-radius: 100px;
+}

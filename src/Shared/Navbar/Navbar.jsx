@@ -1,12 +1,14 @@
 import React from 'react'
-import { NavLink } from 'react-router'
+import { Link, NavLink } from 'react-router'
 import Logo from '../Logo/Logo'
 
 function Navbar() {
     const NavItems = <>
-     <li><NavLink>Home</NavLink></li>
-     <li><NavLink>About Us</NavLink></li>
-     <li><NavLink>Services</NavLink></li>
+     <li><NavLink to='/services'>Services</NavLink></li>
+     <li><NavLink to='/coverage'>Coverage</NavLink></li>
+     <li><NavLink to='/about'>About Us</NavLink></li>
+     <li><NavLink to='/pricing'>Pricing</NavLink></li>
+     <li><NavLink to='/rider'>Be a Rider</NavLink></li>
     </>
   return (
     <nav>
@@ -22,15 +24,16 @@ function Navbar() {
         {NavItems}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl"><Logo/></a>
+    <div className="btn btn-ghost text-xl"><Logo/></div>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-base font-medium">
       {NavItems}
     </ul>
   </div>
-  <div className="navbar-end">
-    <a className="btn">Sign In</a>
+  <div className="navbar-end flex items-center gap-2">
+   <Link to="/login"><button className="btn bg-white  rounded-lg">Sign In</button></Link>
+   <Link to="/login"><button className="btn bg-primary rounded-lg">Be a rider</button></Link>
   </div>
 </div>
     </nav>

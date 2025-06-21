@@ -34,7 +34,7 @@ function Login() {
           }
           
           <button className="btn btn-neutral mt-4 sm:w-[330px] bg-primary  text-black font-bold border-none">Login</button>
-           <div className='mt-2'>Don't have any account? <Link to='/register' className='text-primary font-semibold underline'>Register</Link></div>
+           <div className='mt-2 text-base'>Don't have any account? <Link to='/register' className='text-primary font-semibold underline'>Register</Link></div>
           
           <SocialLogin/>
         </fieldset>
