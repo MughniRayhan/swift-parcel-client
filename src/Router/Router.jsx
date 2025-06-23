@@ -6,6 +6,8 @@ import Login from "../Pages/Auth/Login/Login";
 import Register from "../Pages/Auth/Register/Register";
 import Coverage from "../Pages/Caverage/Coverage";
 import Loader from "../Components/Loader/Loader";
+import PrivateRoute from "../Routes/PrivateRoute";
+import SendParcel from "../Pages/SendParcel/SendParcel";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +22,12 @@ export const router = createBrowserRouter([
         Component: Coverage,
         loader: ()=> fetch("./serviceCenter.json"),
         hydrateFallbackElement: <Loader/>
+      },
+      {
+        path: "/sendParcel",
+        loader: ()=> fetch("./serviceCenter.json"),
+        hydrateFallbackElement: <Loader/>,
+        element: <PrivateRoute><SendParcel></SendParcel></PrivateRoute>,
       }
     ]
 
