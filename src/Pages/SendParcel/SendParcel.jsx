@@ -3,10 +3,13 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const SendParcel = () => {
     const districtData = useLoaderData(); 
-    const {user} = UseAuth()
+    const axiosSecure = UseAxiosSecure();
+    const {user} = UseAuth();
+
   const {
     register,
     handleSubmit,
@@ -96,8 +99,15 @@ const onSubmit = (data) => {
         };
 
         console.log("Parcel saved:", finalData);
-        Swal.fire("Success!", "Parcel booked successfully!", "success");
+        axiosSecure.post("/parcels", finalData)
+          .then((res) => {
+            console.log(res.data)
+            if(res.data.insertedId){
+             Swal.fire("Success!", "Parcel booked successfully!", "success");
         reset();
+            }
+          })
+       
       }
     });
   };
