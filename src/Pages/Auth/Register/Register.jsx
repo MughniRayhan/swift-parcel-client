@@ -9,8 +9,7 @@ function Register() {
         const {createUser} = UseAuth()
     
         const onSubmit = (data) => {
-            console.log(data);
-            // register
+            
             createUser(data.email, data.password)
             .then((result) => {
                 console.log(result.user);

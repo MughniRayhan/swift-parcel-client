@@ -4,7 +4,18 @@ import Logo from '../Logo/Logo'
 import UseAuth from '../../Hooks/UseAuth';
 
 function Navbar() {
-  const {user,logout} = UseAuth();
+  const {user,logOut} = UseAuth();
+
+  const handleLogOut = () => {
+    logOut()
+    .then((res) => {
+      console.log("Logged out successfully");
+    })
+    .catch((error) => {
+      console.error("Logout Error: ", error);
+    })
+  }
+
     const NavItems = <>
      <li><NavLink to='/'>Home</NavLink></li>
      <li><NavLink to='/sendParcel'>Send A Parcel</NavLink></li>
@@ -32,7 +43,7 @@ function Navbar() {
         {NavItems}
       </ul>
     </div>
-    <div className="btn btn-ghost text-xl"><Logo/></div>
+    <div ><Logo/></div>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 text-base font-medium">
@@ -42,7 +53,7 @@ function Navbar() {
   <div className="navbar-end flex items-center gap-2">
     {
       user ?
-      <button className="btn bg-white  rounded-lg">Log Out</button>
+      <button onClick={handleLogOut} className="btn bg-white  rounded-lg">Log Out</button>
       :
       <Link to="/login"><button className="btn bg-white  rounded-lg">Sign In</button></Link>
     }
