@@ -1,12 +1,19 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router'
 import Logo from '../Logo/Logo'
+import UseAuth from '../../Hooks/UseAuth';
 
 function Navbar() {
+  const {user,logout} = UseAuth();
     const NavItems = <>
-     <li><NavLink to='/services'>Services</NavLink></li>
+     <li><NavLink to='/'>Home</NavLink></li>
      <li><NavLink to='/sendParcel'>Send A Parcel</NavLink></li>
      <li><NavLink to='/coverage'>Coverage</NavLink></li>
+     {
+      user && <>
+      <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+      </>
+     }
      <li><NavLink to='/about'>About Us</NavLink></li>
      <li><NavLink to='/pricing'>Pricing</NavLink></li>
      <li><NavLink to='/rider'>Be a Rider</NavLink></li>
@@ -33,8 +40,14 @@ function Navbar() {
     </ul>
   </div>
   <div className="navbar-end flex items-center gap-2">
-   <Link to="/login"><button className="btn bg-white  rounded-lg">Sign In</button></Link>
-   <Link to="/login"><button className="btn bg-primary rounded-lg">Be a rider</button></Link>
+    {
+      user ?
+      <button className="btn bg-white  rounded-lg">Log Out</button>
+      :
+      <Link to="/login"><button className="btn bg-white  rounded-lg">Sign In</button></Link>
+    }
+   
+   <Link to="/"><button className="btn bg-primary rounded-lg">Be a rider</button></Link>
   </div>
 </div>
     </nav>
