@@ -5,10 +5,12 @@ import UseAuth from '../../../Hooks/UseAuth';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 function MyParcels() {
     const {user} = UseAuth();
     const axiosSecure = UseAxiosSecure();
+    const navigate = useNavigate();
     const {data: parcels=[], refetch} = useQuery({ 
         queryKey: ['my-parcels', user?.email], 
         queryFn: async () => {
@@ -16,7 +18,13 @@ function MyParcels() {
             return res.data;
         } 
     })
-    console.log(parcels)
+
+    // handle payment
+    const handlePay = (id) => {
+      navigate(`/dashboard/payment/${id}`);
+    }
+    
+  // delete parcel
   const handleDelete = (id) => {
   Swal.fire({
     title: "Are you sure?",
@@ -57,8 +65,8 @@ function MyParcels() {
           <thead className="bg-primary font-bold text-gray-700">
             <tr>
               <th>#</th>
-              <th>Type</th>
               <th>Title</th>
+              <th>Type</th>
               <th>Date</th>
               <th>Cost</th>
               <th>Payment</th>
@@ -71,8 +79,8 @@ function MyParcels() {
             parcels.map((parcel, index) => (
               <tr key={parcel._id}>
                 <td>{index + 1}</td>
-                <td className="capitalize">{parcel.type}</td>
                 <td className="capitalize">{parcel.title}</td>
+                <td className="capitalize">{parcel.type}</td>
                 <td>{new Date(parcel.creation_date).toLocaleDateString()}</td>
                 <td>৳{parcel.cost}</td>
                 <td>
@@ -90,9 +98,13 @@ function MyParcels() {
                   <button className="btn btn-sm bg-primary text-black hover:bg-primary/50">
                     <FaEye />
                   </button>
-                  <button className="btn btn-sm btn-outline btn-success">
+               {   parcel.payment_status === "unpaid" &&
+                   <button 
+                  onClick={() => handlePay(parcel._id)}
+                  className="btn btn-sm btn-outline btn-success">
                     <FaMoneyCheckAlt />
                   </button>
+               }
                   <button
                     onClick={() => handleDelete(parcel._id)}
                     className="btn btn-sm btn-outline btn-error"
