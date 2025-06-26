@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router'
 import Logo from '../Shared/Logo/Logo'
+import { FaHome, FaBoxOpen, FaMoneyCheckAlt,   FaMapMarkerAlt, FaUserEdit} from 'react-icons/fa';
 
 function DashboardLayout() {
   return (
@@ -35,13 +36,29 @@ function DashboardLayout() {
   </div>
   <div className="drawer-side">
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-    <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+<ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
       {/* Sidebar content here */}
-      <div className='mb-4'><Logo/></div>
-      
-      <NavLink to='/'>Home</NavLink>
-      <NavLink to='/dashboard/myParcels'>My Parcels</NavLink>
-     
+    <div className='mb-4'><Logo/></div>
+          
+     <NavLink to='/' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+      <FaHome /> Home
+    </NavLink>
+    
+    <NavLink to='/dashboard/myParcels' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+      <FaBoxOpen /> My Parcels
+    </NavLink>
+    
+    <NavLink to='/dashboard/paymentHistory' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+      <FaMoneyCheckAlt /> Payment History
+    </NavLink>
+    
+    <NavLink to='/dashboard/track' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+      <FaMapMarkerAlt /> Track a Package
+    </NavLink>
+    
+    <NavLink to='/dashboard/profile' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+      <FaUserEdit /> Update Profile
+    </NavLink>
     </ul>
   </div>
 </div>
