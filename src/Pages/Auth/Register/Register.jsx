@@ -1,22 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from "react-hook-form"
 import { Link } from 'react-router';
 import UseAuth from '../../../Hooks/UseAuth';
 import SocialLogin from '../SocialLogin/SocialLogin';
-
+import { FaFileUpload } from "react-icons/fa";
+import axios from 'axios';
 function Register() {
         const {register, handleSubmit, formState: { errors }} = useForm();
-        const {createUser} = UseAuth()
+        const {createUser,updateUserProfile} = UseAuth()
+        const [profile,setProfile] = useState('')
     
-        const onSubmit = (data) => {
-            
-            createUser(data.email, data.password)
-            .then((result) => {
-                console.log(result.user);
-            })
-            .catch((error) => {
-                console.error(error.message);
-            })
+        
+const onSubmit = (data) => {
+  createUser(data.email, data.password)
+    .then((result) => {
+      console.log(result.user);
+
+      const userProfile = {
+        displayName: data.name,
+        photoURL: profile,
+      };
+
+      updateUserProfile(userProfile)
+        .then(() => {
+          console.log("user name and profile updated");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
+};
+
+
+        const handleUploadImage = async(e) =>{
+          const image = e.target.files[0];
+          console.log(image);
+          const formData = new FormData();
+          formData.append('image',image);
+ const uploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_key}`;
+        
+  try {
+    const res = await axios.post(uploadUrl,formData);
+
+    setProfile(res.data.data.url);
+    console.log(profile)
+    // Save this URL in your database or state as needed
+  } catch (error) {
+    console.error("Error uploading image:", error);
+  }
         }
   return (
         <div className=' my-10 sm:w-[70%] mx-auto w-full shadow-lg md:shadow-none'>
@@ -25,23 +59,31 @@ function Register() {
              <h2 className='font-extrabold sm:text-3xl text-xl mb-1'>Create an Account</h2>
             <p>Register with SwiftParcel</p>
            </div>
+
+           
         <fieldset className="fieldset">
-            <label className="label">Name</label>
+          {/* image */}
+            <input type="file"
+          onChange={handleUploadImage} 
+          className="file-input" placeholder="" />
+
+          {/* name */}
+          <label className="label">Name</label>
           <input type="text"  
           {...register("name",{ required: true})} 
           className="input" placeholder="Name" />
           {
-            errors.name?.type === 'required' && <span className='text-red-500'>Password is required</span>
+            errors.name?.type === 'required' && <span className='text-red-500'>Name is required</span>
           }
-
+           {/* email */}
           <label className="label">Email</label>
           <input type="email"  
           {...register("email",{ required: true})} 
           className="input" placeholder="Email" />
           {
-            errors.email?.type === 'required' && <span className='text-red-500'>Password is required</span>
+            errors.email?.type === 'required' && <span className='text-red-500'>Email is required</span>
           }
-
+           {/* password */}
           <label className="label">Password</label>
           <input type="password"  
           {...register("password",{ required: true, minLength: 6 })} 
