@@ -5,17 +5,40 @@ import UseAuth from '../../../Hooks/UseAuth';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { FaFileUpload } from "react-icons/fa";
 import axios from 'axios';
+import UseAxios from '../../../Hooks/UseAxios';
 function Register() {
         const {register, handleSubmit, formState: { errors }} = useForm();
         const {createUser,updateUserProfile} = UseAuth()
         const [profile,setProfile] = useState('')
-    
+        const [name,setName] = useState('');
+        const axiosInstance = UseAxios();
         
 const onSubmit = (data) => {
   createUser(data.email, data.password)
-    .then((result) => {
+    .then(async(result) => {
       console.log(result.user);
+      setName(data.name)
+      // update userInfo in database
+      const userData = {
+    email: data.email,
+    displayName: data.name,
+    photoURL: profile,
+    role: "user", 
+    creation_date: new Date().toISOString(),
+    last_login: new Date().toISOString(),
+  };
 
+   try {
+    const res = await axiosInstance.post("/users", userData);
+    if (res.data.inserted) {
+      console.log("New user saved to DB");
+    } else {
+      console.log("User already exists in DB");
+    }
+  } catch (error) {
+    console.error("Error saving user:", error);
+  }
+      // update user profile in firebase
       const userProfile = {
         displayName: data.name,
         photoURL: profile,
@@ -47,7 +70,7 @@ const onSubmit = (data) => {
 
     setProfile(res.data.data.url);
     console.log(profile)
-    // Save this URL in your database or state as needed
+   
   } catch (error) {
     console.error("Error uploading image:", error);
   }
@@ -97,7 +120,7 @@ const onSubmit = (data) => {
          
           <button className="btn btn-neutral mt-4 sm:w-[330px] bg-primary text-black font-bold border-none">Register</button>
           <div className='mt-2 text-base'>Allready have an account?    <Link to='/login' className='text-primary font-semibold underline'>   Login</Link></div>
-         <SocialLogin/>
+         <SocialLogin />
         </fieldset>
           
     </form>

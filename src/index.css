@@ -18,3 +18,9 @@ nav a.active {
   background: #caeb66;
   border-radius: 100px;
 }
+
+.dashboard_page.active {
+  background-color: #caeb66;
+  padding: 2px 8px;
+  font-weight: bold;
+}

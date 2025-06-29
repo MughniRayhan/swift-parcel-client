@@ -1,16 +1,42 @@
 import React from 'react'
 import UseAuth from '../../../Hooks/UseAuth'
 import { useLocation, useNavigate } from 'react-router';
+import UseAxios from '../../../Hooks/UseAxios';
 
 function SocialLogin() {
     const { signInWithGoogle} = UseAuth();
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosInstance = UseAxios();
 
     const handleGoogleSignIn = () =>{
         signInWithGoogle()
-        .then(result => {
-            console.log(result.user);
+        .then(async(result) => {
+            const user = result.user;
+            console.log(user);
+
+     // update userInfo in database
+    const userData = {
+    email: user.email,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    role: "user", 
+    creation_date: new Date().toISOString(),
+    last_login: new Date().toISOString(),
+  };
+
+  try {
+    const res = await axiosInstance.post("/users", userData);
+    if (res.data.inserted) {
+      console.log("New user saved to DB");
+    } else {
+      console.log("User already exists in DB");
+    }
+  } catch (error) {
+    console.error("Error saving user:", error);
+  }
+
+
             navigate(location.state || '/');
         })
         .catch(error => {

@@ -40,23 +40,23 @@ function DashboardLayout() {
       {/* Sidebar content here */}
     <div className='mb-4'><Logo/></div>
           
-     <NavLink to='/' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+     <NavLink to='/' className="flex items-center gap-2 mt-5 text-lg  dashboard_page">
       <FaHome /> Home
     </NavLink>
     
-    <NavLink to='/dashboard/myParcels' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+    <NavLink to='/dashboard/myParcels' className="flex items-center gap-2 mt-5 text-lg  dashboard_page">
       <FaBoxOpen /> My Parcels
     </NavLink>
     
-    <NavLink to='/dashboard/paymentHistory' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+    <NavLink to='/dashboard/paymentHistory' className="flex items-center gap-2 mt-5 text-lg   dashboard_page">
       <FaMoneyCheckAlt /> Payment History
     </NavLink>
     
-    <NavLink to='/dashboard/track' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+    <NavLink to='/dashboard/track' className="flex items-center gap-2 mt-5 text-lg  dashboard_page">
       <FaMapMarkerAlt /> Track a Package
     </NavLink>
     
-    <NavLink to='/dashboard/profile' className="flex items-center gap-2 mt-5 text-lg font-semibold text-secondary">
+    <NavLink to='/dashboard/profile' className="flex items-center gap-2 mt-5 text-lg  dashboard_page">
       <FaUserEdit /> Update Profile
     </NavLink>
     </ul>
