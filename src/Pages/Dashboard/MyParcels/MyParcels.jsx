@@ -4,7 +4,6 @@ import { FaEye, FaTrash, FaMoneyCheckAlt } from "react-icons/fa";
 import UseAuth from '../../../Hooks/UseAuth';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import Swal from 'sweetalert2';
-import axios from 'axios';
 import { useNavigate } from 'react-router';
 
 function MyParcels() {
