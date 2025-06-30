@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form"
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import UseAuth from '../../../Hooks/UseAuth';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { FaFileUpload } from "react-icons/fa";
@@ -8,8 +8,11 @@ import axios from 'axios';
 import UseAxios from '../../../Hooks/UseAxios';
 function Register() {
         const {register, handleSubmit, formState: { errors }} = useForm();
-        const {createUser,updateUserProfile} = UseAuth()
-        const [profile,setProfile] = useState('')
+        const {createUser,updateUserProfile} = UseAuth();
+        const location = useLocation();
+        const navigate = useNavigate();
+
+        const [profile,setProfile] = useState('');
         const [name,setName] = useState('');
         const axiosInstance = UseAxios();
         
@@ -51,6 +54,7 @@ const onSubmit = (data) => {
         .catch((error) => {
           console.log(error);
         });
+        navigate('/')
     })
     .catch((error) => {
       console.error(error.message);

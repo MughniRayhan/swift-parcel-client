@@ -52,6 +52,13 @@ console.log(payments)
               </td>
             </tr>
           ))}
+          {
+            payments.length === 0 && (
+              <tr>
+                <td colSpan="8" className="text-center">No payment found.</td>
+              </tr>
+            )
+          }
         </tbody>
       </table>
     </div>

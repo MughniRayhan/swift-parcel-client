@@ -112,6 +112,11 @@ if(isPending){
                 </td>
               </tr>
             ))}
+              {pendingRiders.length === 0 && (
+              <tr>
+                <td colSpan="8" className="text-center">No pending riders found.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
