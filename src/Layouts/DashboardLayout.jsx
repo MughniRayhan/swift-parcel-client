@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router'
 import Logo from '../Shared/Logo/Logo'
-import { FaHome, FaBoxOpen, FaMoneyCheckAlt,   FaMapMarkerAlt, FaUserEdit, FaMotorcycle, FaUserClock} from 'react-icons/fa';
+import { FaHome, FaBoxOpen, FaMoneyCheckAlt,   FaMapMarkerAlt, FaUserEdit, FaMotorcycle, FaUserClock, FaUserShield} from 'react-icons/fa';
 
 function DashboardLayout() {
   return (
@@ -69,6 +69,11 @@ function DashboardLayout() {
 <NavLink to='/dashboard/pendingRiders' className="flex items-center gap-2 mt-5 text-lg dashboard_page">
   <FaUserClock /> Pending Riders
 </NavLink>
+
+<NavLink to='/dashboard/makeAdmin' className="flex items-center gap-2 mt-5 text-lg dashboard_page">
+  <FaUserShield /> Make Admin
+</NavLink>
+
     </ul>
   </div>
 </div>
