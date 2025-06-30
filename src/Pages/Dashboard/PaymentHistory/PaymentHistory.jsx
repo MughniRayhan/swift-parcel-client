@@ -20,7 +20,7 @@ function PaymentHistory() {
     if(isPending){
         return <Loader/>
     }
-
+console.log(payments)
   return (
     <div className="px-6 py-10  rounded-xl min-h-screen ">
       <h2 className="text-2xl font-extrabold mb-4 text-secondary">Payment History</h2>

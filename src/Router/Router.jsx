@@ -13,6 +13,7 @@ import MyParcels from "../Pages/Dashboard/MyParcels/MyParcels";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 import TrackParcel from "../Pages/Dashboard/TrackParcel/TrackParcel";
+import BeARider from "../Pages/Dashboard/BeARider/BeARider";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -33,6 +34,12 @@ export const router = createBrowserRouter([
         loader: ()=> fetch("./serviceCenter.json"),
         hydrateFallbackElement: <Loader/>,
         element: <PrivateRoute><SendParcel></SendParcel></PrivateRoute>,
+      },
+      {
+        path: "/rider",
+        element: <PrivateRoute><BeARider></BeARider></PrivateRoute>,
+        loader: ()=> fetch("./serviceCenter.json"),
+        hydrateFallbackElement: <Loader/>,
       }
     ]
 
