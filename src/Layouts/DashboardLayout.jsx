@@ -2,8 +2,11 @@ import React from 'react'
 import { NavLink, Outlet } from 'react-router'
 import Logo from '../Shared/Logo/Logo'
 import { FaHome, FaBoxOpen, FaMoneyCheckAlt,   FaMapMarkerAlt, FaUserEdit, FaMotorcycle, FaUserClock, FaUserShield} from 'react-icons/fa';
+import useUserRole from '../Hooks/useUserRole';
 
 function DashboardLayout() {
+   const {role,roleLoading} = useUserRole()
+   console.log(role)
   return (
 <div className="drawer lg:drawer-open">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -60,8 +63,10 @@ function DashboardLayout() {
       <FaUserEdit /> Update Profile
     </NavLink>
 
-    
-<NavLink to='/dashboard/activeRiders' className="flex items-center gap-2 mt-5 text-lg dashboard_page">
+{
+  !roleLoading && role==="admin" && 
+  <>
+  <NavLink to='/dashboard/activeRiders' className="flex items-center gap-2 mt-5 text-lg dashboard_page">
   <FaMotorcycle /> Active Riders
 </NavLink>
 
@@ -73,7 +78,8 @@ function DashboardLayout() {
 <NavLink to='/dashboard/makeAdmin' className="flex items-center gap-2 mt-5 text-lg dashboard_page">
   <FaUserShield /> Make Admin
 </NavLink>
-
+  </>
+}
     </ul>
   </div>
 </div>
