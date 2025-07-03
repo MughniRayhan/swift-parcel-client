@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 
@@ -9,6 +9,7 @@ const SendParcel = () => {
     const districtData = useLoaderData(); 
     const axiosSecure = UseAxiosSecure();
     const {user} = UseAuth();
+    const navigate = useNavigate()
 
   const {
     register,
@@ -107,9 +108,10 @@ const onSubmit = (data) => {
         reset();
             }
           })
-       
+       navigate('/dashboard/myParcels')
       }
     });
+   
   };
 
 
