@@ -7,7 +7,7 @@ function MerchantBe() {
    bg-secondary py-20 px-12 rounded-3xl">
      <div className='flex flex-col lg:flex-row items-center justify-between gap-4'>
         <div className='lg:w-[44%] w-full'>
-           <h2 className='text-2xl md:text-3xl font-bold text-white'>
+           <h2 className='sm:text-2xl text-xl md:text-3xl font-bold text-white'>
             Merchant and Customer Satisfaction is Our First Priority
            </h2>
            <p className='text-white/50 my-4'>We offer the lowest delivery charge with the highest value along with 100% safety of your product. Pathao courier delivers your parcels in every corner of Bangladesh right on time.</p>

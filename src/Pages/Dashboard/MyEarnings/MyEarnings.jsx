@@ -53,9 +53,9 @@ console.log("e",earnings)
 
   return (
     <div className=" px-12 py-10 bg-white rounded-2xl shadow-md min-h-screen">
-      <h2 className="text-3xl font-extrabold text-secondary mb-6">My Earnings</h2>
+      <h2 className="sm:text-3xl text-2xl font-extrabold text-secondary mb-6">My Earnings</h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
         <div className="bg-green-100 p-4 rounded">
           <h4 className="font-semibold">Total Earnings</h4>
           <p>${totalEarnings.toFixed(2)}</p>

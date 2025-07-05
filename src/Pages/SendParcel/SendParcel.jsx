@@ -4,13 +4,14 @@ import Swal from "sweetalert2";
 import { useLoaderData, useNavigate } from "react-router";
 import UseAuth from "../../Hooks/UseAuth";
 import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
+import useAddTrackingEvent from "../../Hooks/useAddTrackingEvent";
 
 const SendParcel = () => {
     const districtData = useLoaderData(); 
     const axiosSecure = UseAxiosSecure();
     const {user} = UseAuth();
     const navigate = useNavigate()
-
+    const { mutate: addTrackingEvent } = useAddTrackingEvent();
   const {
     register,
     handleSubmit,
@@ -108,6 +109,13 @@ const onSubmit = (data) => {
         reset();
             }
           })
+
+           addTrackingEvent({
+              tracking_id: finalData.tracking_id,
+              event: "submitted",
+              remarks: `Parcel submitted by ${user.email}.`
+            });
+            
        navigate('/dashboard/myParcels')
       }
     });

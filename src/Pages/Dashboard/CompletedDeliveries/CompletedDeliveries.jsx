@@ -36,7 +36,7 @@ const CompletedDeliveries = () => {
 
   return (
     <div className=" px-12 py-10 bg-white rounded-2xl shadow-md min-h-screen">
-      <h2 className="text-3xl font-extrabold text-secondary mb-2">Completed Deliveries</h2>
+      <h2 className="sm:text-3xl text-2xl font-extrabold text-secondary mb-2">Completed Deliveries</h2>
 
        <div className="overflow-x-auto border border-gray-200 rounded-lg">
         <table className="table table-zebra w-full">

@@ -3,12 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import Loader from '../../../Components/Loader/Loader';
 import Swal from 'sweetalert2';
+import useAddTrackingEvent from '../../../Hooks/useAddTrackingEvent';
 
 function AssignRider() {
   const axiosSecure = UseAxiosSecure();
   const [selectedParcel, setSelectedParcel] = useState(null);
   const [riders, setRiders] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+ const { mutate: addTrackingEvent } = useAddTrackingEvent();
 
   const { data: parcels = [], isLoading, refetch } = useQuery({
     queryKey: ['paidPendingParcels'],
@@ -44,6 +46,13 @@ function AssignRider() {
         title: 'Rider Assigned!',
         text: `Assigned ${rider.name} successfully.`,
       });
+
+       addTrackingEvent({
+         tracking_id: selectedParcel.tracking_id,
+         event: "rider_assigned",
+         remarks: `Rider ${rider.name} assigned to parcel.`
+        });
+
       setIsModalOpen(false);
       refetch();
     } else {

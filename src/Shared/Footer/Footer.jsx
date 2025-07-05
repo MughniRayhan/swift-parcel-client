@@ -9,17 +9,17 @@ function Footer() {
      <li><NavLink>Services</NavLink></li>
     </>
   return (
-    <footer className="footer footer-horizontal footer-center bg-black rounded-3xl my-10 text-primary-content p-10">
+    <footer className="footer footer-horizontal footer-center bg-black rounded-3xl my-10 text-primary-content sm:p-10 p-4 w-full">
   <aside>
 <Logo/>
-    <p className="sm:text-base text-gray-400 sm:w-[748px] ">
+    <p className="sm:text-base text-gray-400 w-full text-sm lg:w-[748px] ">
       Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.
     </p>
-    <div className="hidden sm:block border-1 border-dashed border-secondary w-full my-5"></div>
-     <div className='flex list-none   items-center justify-center gap-4'>
+    <div className="hidden lg:block border-1 border-dashed border-secondary w-full my-5"></div>
+     <div className='flex list-none   items-center justify-center sm:gap-4 gap-2'>
     {listItems}
   </div>
-  <div className="hidden sm:block border-1 border-dashed border-secondary w-full my-5"></div>
+  <div className="hidden lg:block border-1 border-dashed border-secondary w-full my-5"></div>
   </aside>
  
   <nav>

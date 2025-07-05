@@ -4,10 +4,12 @@ import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import UseAuth from '../../../Hooks/UseAuth';
 import Loader from '../../../Components/Loader/Loader';
 import Swal from 'sweetalert2';
+import useAddTrackingEvent from '../../../Hooks/useAddTrackingEvent';
 
 function PendingDeliveries() {
   const axiosSecure = UseAxiosSecure();
   const { user } = UseAuth();
+  const { mutate: addTrackingEvent } = useAddTrackingEvent();
 
   const { data: parcels = [], isLoading, refetch } = useQuery({
     queryKey: ['pendingDeliveries', user.email],
@@ -18,40 +20,58 @@ function PendingDeliveries() {
     }
   });
 console.log(parcels)
-  const handleUpdateStatus = async (parcelId, newStatus) => {
-    try {
-      const res = await axiosSecure.patch(`/parcels/${parcelId}/update-status`, {
-        status: newStatus
+  const handleUpdateStatus = async (parcel, newStatus) => {
+  try {
+    const res = await axiosSecure.patch(`/parcels/${parcel._id}/update-status`, {
+      status: newStatus
+    });
+ 
+    if (res.data.modifiedCount > 0) {
+      await Swal.fire({
+        icon: 'success',
+        title: `Status Updated`,
+        text: `Parcel status updated to ${newStatus}.`
       });
 
-      if (res.data.modifiedCount > 0) {
-        await Swal.fire({
-          icon: 'success',
-          title: `Status Updated`,
-          text: `Parcel status updated to ${newStatus}.`
-        });
-        refetch();
+      
+      let eventStatus = "picked_up";
+      let remarksDetails = "Parcel picked up by rider.";
+
+      if (newStatus === "delivered") {
+        eventStatus = "delivered";
+        remarksDetails = "Parcel delivered successfully.";
       }
-    } catch (error) {
-      console.error("Error updating status:", error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Failed',
-        text: 'Could not update status.'
+
+      
+      addTrackingEvent({
+        tracking_id: parcel.tracking_id,
+        event: eventStatus,
+        remarks: remarksDetails,
       });
+
+      refetch(); 
     }
-  };
+  } catch (error) {
+    console.error("Error updating status:", error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Failed',
+      text: 'Could not update status.'
+    });
+  }
+};
+
 
   if (isLoading) {
     return <div className="text-center my-10"><Loader/></div>;
   }
 
   return (
-    <div className="p-8">
-      <h2 className="text-3xl font-bold mb-6">My Pending Deliveries</h2>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra">
-          <thead>
+    <div className=" px-12 py-10 bg-white rounded-2xl shadow-md min-h-screen">
+      <h2 className="sm:text-3xl text-2xl font-extrabold text-secondary mb-5">My Pending Deliveries</h2>
+      <div className="overflow-x-auto border border-gray-200 rounded-lg">
+        <table className="table table-zebra w-full">
+          <thead className="bg-primary font-bold text-gray-700">
             <tr>
               <th>#</th>
               <th>Tracking ID</th>
@@ -77,7 +97,7 @@ console.log(parcels)
                   {parcel.delivery_status === "assigned" && (
                     <button
                       className="btn text-black btn-warning"
-                      onClick={() => handleUpdateStatus(parcel._id, "in_transit")}
+                      onClick={() => handleUpdateStatus(parcel, "in_transit")}
                     >
                       Mark as Picked Up
                     </button>
@@ -85,7 +105,7 @@ console.log(parcels)
                   {parcel.delivery_status === "in_transit" && (
                     <button
                       className="btn text-white btn-success"
-                      onClick={() => handleUpdateStatus(parcel._id, "delivered")}
+                      onClick={() => handleUpdateStatus(parcel, "delivered")}
                     >
                       Mark as Delivered
                     </button>

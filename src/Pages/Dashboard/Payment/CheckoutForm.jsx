@@ -6,6 +6,7 @@ import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import Loader from '../../../Components/Loader/Loader';
 import UseAuth from '../../../Hooks/UseAuth';
 import Swal from 'sweetalert2';
+import useAddTrackingEvent from '../../../Hooks/useAddTrackingEvent';
 
 function CheckoutForm() {
     const stripe = useStripe();
@@ -15,6 +16,7 @@ function CheckoutForm() {
     const {user} = UseAuth();
     const navigate = useNavigate()
     const axiosSecure = UseAxiosSecure();
+    const { mutate: addTrackingEvent } = useAddTrackingEvent();
 
     const {data: parcelInfo={}, isPending} = useQuery({ 
         queryKey: ['parcels', id], 
@@ -93,6 +95,13 @@ function CheckoutForm() {
           html: `<strong>Transaction Id: </strong>  <code>${transactionId}</code>`,
           confirmButtonText: 'Go to My Parcels'
         });
+
+        addTrackingEvent({
+           tracking_id: parcelInfo.tracking_id,
+           event: "paid",
+           remarks: "Payment successful for parcel."
+        });
+
         navigate('/dashboard/myParcels')
         }
       }
