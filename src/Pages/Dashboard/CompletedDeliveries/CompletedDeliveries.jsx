@@ -22,7 +22,9 @@ const CompletedDeliveries = () => {
   // Cash out mutation
   const cashOutMutation = useMutation({
     mutationFn: async (parcelId) => {
-      return axiosSecure.patch(`/parcels/${parcelId}/cashout`, {});
+      return axiosSecure.patch(`/parcels/${parcelId}/cashout`, {
+        
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["completedDeliveries", user?.email]);

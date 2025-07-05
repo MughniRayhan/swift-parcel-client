@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink, Outlet } from 'react-router'
 import Logo from '../Shared/Logo/Logo'
-import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserPlus, FaMapMarkerAlt, FaUserEdit, FaMotorcycle, FaUserClock, FaUserShield, FaTasks, FaCheckCircle} from 'react-icons/fa';
+import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserPlus, FaMapMarkerAlt, FaUserEdit, FaMotorcycle, FaUserClock, FaUserShield, FaTasks, FaCheckCircle, FaWallet} from 'react-icons/fa';
 import useUserRole from '../Hooks/useUserRole';
 
 function DashboardLayout() {
@@ -72,6 +72,10 @@ function DashboardLayout() {
 
 <NavLink to='/dashboard/completed-deliveries' className="flex items-center gap-2 mt-5 text-lg dashboard_page">
   <FaCheckCircle /> Completed Deliveries
+</NavLink>
+
+<NavLink to='/dashboard/my-earnings' className="flex items-center gap-2 mt-5 text-lg dashboard_page">
+  <FaWallet /> My Earnings
 </NavLink>
   </>
 }
