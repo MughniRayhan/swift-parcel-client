@@ -26,8 +26,6 @@ function Navbar() {
       </>
      }
      <li><NavLink to='/about'>About Us</NavLink></li>
-     <li><NavLink to='/pricing'>Pricing</NavLink></li>
-     <li><NavLink to='/rider'>Be a Rider</NavLink></li>
     </>
   return (
     <nav>

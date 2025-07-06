@@ -25,10 +25,12 @@ import RiderRoute from "../Routes/RiderRoute";
 import CompletedDeliveries from "../Pages/Dashboard/CompletedDeliveries/CompletedDeliveries";
 import MyEarnings from "../Pages/Dashboard/MyEarnings/MyEarnings";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,
