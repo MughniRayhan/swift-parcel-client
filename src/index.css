@@ -24,3 +24,11 @@ nav a.active {
   padding: 2px 8px;
   font-weight: bold;
 }
+
+.dashboard_homepage.active {
+  background-color: #10605c2b;
+
+  color: #03373d;
+  padding: 2px 8px;
+  font-weight: bold;
+}

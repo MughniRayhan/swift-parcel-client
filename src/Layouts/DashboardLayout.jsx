@@ -8,7 +8,7 @@ function DashboardLayout() {
    const {role,roleLoading} = useUserRole()
    console.log(role)
   return (
-<div className="drawer lg:drawer-open">
+<div className="drawer lg:drawer-open ">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content flex flex-col ">
    
@@ -37,7 +37,7 @@ function DashboardLayout() {
     {/* Page content here */}
     <Outlet/>
   </div>
-  <div className="drawer-side">
+  <div className="drawer-side ">
      <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
 <ul className="menu bg-base-200 text-base-content min-h-full sm:w-80 w-[80%] p-4">
   <div className='flex items-center justify-between lg:hidden'>
@@ -58,7 +58,7 @@ function DashboardLayout() {
     <div ><Logo/></div>
   </div>
        <div className='mb-4 hidden lg:block'><Logo/></div>    
-     <NavLink to='/' className="flex items-center gap-2 mt-5 text-lg  dashboard_page">
+     <NavLink to='/dashboard' className="flex items-center gap-2 mt-5 text-lg  dashboard_homepage">
       <FaHome /> Home
     </NavLink>
     
