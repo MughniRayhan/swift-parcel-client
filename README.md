@@ -6,7 +6,7 @@ A **full-stack MERN** based courier management system with **automated pricing, 
 
 ## 🚀 Live Demo
 
-[🔗 Click here to visit the deployed site]()
+[🔗 Click here to visit the deployed site](https://voluble-concha-7b7a93.netlify.app/)
 
 ---
 
