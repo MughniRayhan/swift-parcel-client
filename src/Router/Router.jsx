@@ -26,6 +26,7 @@ import CompletedDeliveries from "../Pages/Dashboard/CompletedDeliveries/Complete
 import MyEarnings from "../Pages/Dashboard/MyEarnings/MyEarnings";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home
+      },
+      {
+        path: '/about',
+        Component: AboutUs
       },
       {
         path: "/coverage",
