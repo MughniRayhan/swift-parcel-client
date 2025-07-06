@@ -58,8 +58,8 @@ function DashboardLayout() {
     <div ><Logo/></div>
   </div>
        <div className='mb-4 hidden lg:block'><Logo/></div>    
-     <NavLink to='/dashboard' className="flex items-center gap-2 mt-5 text-lg  dashboard_homepage">
-      <FaHome /> Home
+     <NavLink to='/dashboard' className=" mt-5 text-lg  dashboard_homepage">
+      Dashboard
     </NavLink>
     
     <NavLink to='/dashboard/myParcels' className="flex items-center gap-2 mt-5 text-lg  dashboard_page">
