@@ -78,11 +78,11 @@ function AssignRider() {
   }
 
   return (
-    <div className="p-8">
-      <h2 className="text-3xl font-bold mb-6">Assign Rider to Parcels</h2>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra">
-          <thead>
+    <div className=" px-12 py-10 bg-white rounded-2xl shadow-md min-h-screen">
+      <h2 className="sm:text-3xl text-2xl font-extrabold text-secondary mb-2">Assign Rider to Parcels</h2>
+       <div className="overflow-x-auto border border-gray-200 rounded-lg">
+        <table className="table table-zebra w-full">
+          <thead className="bg-primary font-bold text-gray-700">
             <tr>
               <th>#</th>
               <th>Parcel ID</th>
@@ -105,7 +105,7 @@ function AssignRider() {
                 <td>{parcel.sender_center}</td>
                 <td>{parcel.delivery_status}</td>
                 <td>
-                  <button className="btn btn-sm btn-primary" onClick={() => openModal(parcel)}>
+                  <button className="btn btn-sm btn-primary text-black" onClick={() => openModal(parcel)}>
                     Assign Rider
                   </button>
                 </td>
@@ -142,7 +142,7 @@ function AssignRider() {
                       <td>{rider.district}</td>
                       <td>
                         <button
-                          className="btn btn-xs btn-success"
+                          className="btn btn-xs btn-success "
                           onClick={() => handleAssign(rider)}
                         >
                           Assign
