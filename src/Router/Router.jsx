@@ -27,6 +27,7 @@ import MyEarnings from "../Pages/Dashboard/MyEarnings/MyEarnings";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AboutUs from "../Pages/AboutUs/AboutUs";
+import ParcelDetails from "../Pages/Dashboard/ParcelsDetails/ParcelDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -91,6 +92,10 @@ export const router = createBrowserRouter([
       {
         path: "myParcels",
         Component: MyParcels
+      },
+      {
+        path: "/dashboard/parcel/:id",
+        Component: ParcelDetails,
       },
       {
         path: "payment/:id",

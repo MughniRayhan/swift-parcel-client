@@ -25,102 +25,94 @@ const SendParcel = () => {
   
   const parcelType = watch("type");
 
-const onSubmit = (data) => {
-    const isSameDistrict = data.sender_region === data.receiver_region;
-    const weight = parseFloat(data.weight || 0);
-    let baseCost = 0;
-    let extraCost = 0;
-    let breakdown = "";
+const onSubmit = async (data) => {
+  const isSameDistrict = data.sender_region === data.receiver_region;
+  const weight = parseFloat(data.weight || 0);
+  let baseCost = 0;
+  let extraCost = 0;
 
-    if (data.type === "document") {
-      baseCost = isSameDistrict ? 60 : 80;
-      breakdown = `Document Delivery<br>${isSameDistrict ? "Within Same District" : "Outside District"}`;
+  if (data.type === "document") {
+    baseCost = isSameDistrict ? 60 : 80;
+  } else {
+    if (weight <= 3) {
+      baseCost = isSameDistrict ? 110 : 150;
     } else {
-      if (weight <= 3) {
-        baseCost = isSameDistrict ? 110 : 150;
-      } else {
-        const extraWeight = weight - 3;
-        extraCost = extraWeight * 40;
-        if (!isSameDistrict) extraCost += 40; // Out-of-city surcharge
-        baseCost = isSameDistrict ? 110 : 150;
-      }
+      const extraWeight = weight - 3;
+      extraCost = extraWeight * 40;
+      if (!isSameDistrict) extraCost += 40; // Out-of-city surcharge
+      baseCost = isSameDistrict ? 110 : 150;
     }
+  }
 
-    const totalCost = baseCost + extraCost;
+  const totalCost = baseCost + extraCost;
 
-    Swal.fire({
-      title: "Confirm Booking?",
-      html: `
-        <div class="text-left space-y-2 text-sm w-full">
-          <div><span class="font-bold">Type:</span> ${data.type}</div>
-          ${
-            data.type === "non-document"
-              ? `<div><span class="font-bold">Weight:</span> ${data.weight} kg</div>`
-              : ""
-          }
-          ${
-            isSameDistrict
-              ? `<div><span class="font-bold">Delivery Zone:</span> Within Same District</div>`
-              : `<div><span class="font-bold">Delivery Zone:</span> Outside District</div>`
-          }
-          <div><span class="font-bold">From:</span> ${data.sender_region}</div>
-          <div><span class="font-bold">To:</span> ${data.receiver_region}</div>
-          <div><span class="font-bold">Base Cost:</span> ৳${baseCost}</div>
-          <div><span class="font-bold">Extra Cost:</span> ৳${extraCost}</div>
-          <div><span class="font-bold text-secondary mt-4 text-lg ">Total Cost:</span> <span class="text-secondary text-lg font-bold">৳${totalCost}</span></div>
-        </div>
-      `,
-      icon: "info",
-      showCancelButton: true,
-      confirmButtonText: "Confirm",
-      cancelButtonText: "Edit",
-      customClass: {
-        popup: "rounded-xl",
-        confirmButton: "bg-primary font-bold text-black px-4 py-2 rounded mx-2",
-        cancelButton: "bg-gray-400 font-bold text-white px-4 py-2 rounded mx-2",
-      },
-      buttonsStyling: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const generateTrackingID = () => {
-          const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, "");
-          const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
-          return `TRK-${datePart}-${randomPart}`;
-        };
-
-        const finalData = {
-          ...data,
-          baseCost,
-          extraCost,
-          cost: totalCost,
-          created_by: user?.email || "guest",
-          payment_status: "unpaid",
-          delivery_status: "pending",
-          creation_date: new Date().toISOString(),
-          tracking_id: generateTrackingID(),
-        };
-
-        console.log("Parcel saved:", finalData);
-        axiosSecure.post("/parcels", finalData)
-          .then((res) => {
-            console.log(res.data)
-            if(res.data.insertedId){
-             Swal.fire("Success!", "Parcel booked successfully!", "success");
-        reset();
-            }
-          })
-
-           addTrackingEvent({
-              tracking_id: finalData.tracking_id,
-              event: "submitted",
-              remarks: `Parcel submitted by ${user.email}.`
-            });
-            
-       navigate('/dashboard/myParcels')
-      }
-    });
-   
+  const generateTrackingID = () => {
+    const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+    const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
+    return `TRK-${datePart}-${randomPart}`;
   };
+
+  const finalData = {
+    ...data,
+    baseCost,
+    extraCost,
+    cost: totalCost,
+    created_by: user?.email || "guest",
+    payment_status: "unpaid",
+    delivery_status: "pending",
+    creation_date: new Date().toISOString(),
+    tracking_id: generateTrackingID(),
+  };
+
+  const confirmation = await Swal.fire({
+    title: "Confirm Booking?",
+    html: `
+      <div class="text-left space-y-2 text-sm w-full">
+        <div><span class="font-bold">Type:</span> ${data.type}</div>
+        ${
+          data.type === "non-document"
+            ? `<div><span class="font-bold">Weight:</span> ${data.weight} kg</div>`
+            : ""
+        }
+        <div><span class="font-bold">From:</span> ${data.sender_region}</div>
+        <div><span class="font-bold">To:</span> ${data.receiver_region}</div>
+        <div><span class="font-bold">Base Cost:</span> ৳${baseCost}</div>
+        <div><span class="font-bold">Extra Cost:</span> ৳${extraCost}</div>
+        <div><span class="font-bold text-secondary mt-4 text-lg ">Total Cost:</span> <span class="text-secondary text-lg font-bold">৳${totalCost}</span></div>
+      </div>
+    `,
+    icon: "info",
+    showCancelButton: true,
+    confirmButtonText: "Confirm",
+    cancelButtonText: "Edit",
+    customClass: {
+      popup: "rounded-xl",
+      confirmButton: "bg-primary font-bold text-black px-4 py-2 rounded mx-2",
+      cancelButton: "bg-gray-400 font-bold text-white px-4 py-2 rounded mx-2",
+    },
+    buttonsStyling: false,
+  });
+
+  if (confirmation.isConfirmed) {
+    try {
+      const res = await axiosSecure.post("/parcels", finalData);
+      if (res.data.insertedId) {
+        await Swal.fire("Success!", "Parcel booked successfully!", "success");
+        addTrackingEvent({
+          tracking_id: finalData.tracking_id,
+          event: "submitted",
+          remarks: `Parcel submitted by ${user.email}.`
+        });
+        reset();
+        navigate('/dashboard/myParcels');
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error!", "Failed to submit parcel.", "error");
+    }
+  }
+};
+
 
 
 

@@ -4,7 +4,7 @@ import { FaEye, FaTrash, FaMoneyCheckAlt } from "react-icons/fa";
 import UseAuth from '../../../Hooks/UseAuth';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 function MyParcels() {
     const {user} = UseAuth();
@@ -94,9 +94,11 @@ function MyParcels() {
                   </span>
                 </td>
                 <td className="flex gap-2">
+                  <Link to={`/dashboard/parcel/${parcel._id}`} >
                   <button className="btn btn-sm bg-primary text-black hover:bg-primary/50">
                     <FaEye />
                   </button>
+                  </Link >
                {   parcel.payment_status === "unpaid" &&
                    <button 
                   onClick={() => handlePay(parcel._id)}

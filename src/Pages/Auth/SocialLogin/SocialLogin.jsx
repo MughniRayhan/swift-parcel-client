@@ -2,6 +2,7 @@ import React from 'react'
 import UseAuth from '../../../Hooks/UseAuth'
 import { useLocation, useNavigate } from 'react-router';
 import UseAxios from '../../../Hooks/UseAxios';
+import { toast } from 'react-toastify';
 
 function SocialLogin() {
     const { signInWithGoogle} = UseAuth();
@@ -36,7 +37,7 @@ function SocialLogin() {
     console.error("Error saving user:", error);
   }
 
-
+            toast.success("Successfully logged in")
             navigate(location.state || '/');
         })
         .catch(error => {

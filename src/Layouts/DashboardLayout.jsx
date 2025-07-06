@@ -74,9 +74,7 @@ function DashboardLayout() {
       <FaMapMarkerAlt /> Track a Package
     </NavLink>
     
-    <NavLink to='/dashboard/profile' className="flex items-center gap-2 mt-5 text-lg  dashboard_page">
-      <FaUserEdit /> Update Profile
-    </NavLink>
+   
 {/* rider links */}
 {
   !roleLoading && role=="rider" &&

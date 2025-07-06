@@ -6,6 +6,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import { FaFileUpload } from "react-icons/fa";
 import axios from 'axios';
 import UseAxios from '../../../Hooks/UseAxios';
+import { toast } from 'react-toastify';
 function Register() {
         const {register, handleSubmit, formState: { errors }} = useForm();
         const {createUser,updateUserProfile} = UseAuth();
@@ -54,6 +55,7 @@ const onSubmit = (data) => {
         .catch((error) => {
           console.log(error);
         });
+        toast.success("Successfully registered")
         navigate('/')
     })
     .catch((error) => {
