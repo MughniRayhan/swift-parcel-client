@@ -13,10 +13,9 @@ function Login() {
   
 
     const onSubmit = (data) => {
-        console.log(data);
+       
         signIn(data.email, data.password)
             .then((result) => {
-                console.log(result.user);
                 toast.success("Successfully logged in")
                 navigate(location.state || '/');
             })

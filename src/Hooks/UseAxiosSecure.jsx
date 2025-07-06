@@ -4,7 +4,7 @@ import UseAuth from './UseAuth';
 import { useNavigate } from 'react-router';
 
     const   axiosSecure = axios.create({
-        baseURL: 'http://localhost:3000/' 
+        baseURL: 'https://swift-parcel-server-kappa.vercel.app/' 
     })
 
 function UseAxiosSecure() {
@@ -30,7 +30,6 @@ function UseAxiosSecure() {
         return res;
       },
       (error) => {
-        console.log(error);
         const status = error.response ? error.response.status : null;
         if (status === 403) {
           navigate('/forbidden');

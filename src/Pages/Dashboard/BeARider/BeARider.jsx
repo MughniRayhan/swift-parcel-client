@@ -27,7 +27,7 @@ function BeARider() {
       status: 'pending',
       appliedAt: new Date().toISOString(),
     };
-    console.log(riderApplication);
+    
 
     try {
       const res = await axiosSecure.post('/riders', riderApplication);

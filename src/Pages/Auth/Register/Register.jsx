@@ -20,7 +20,6 @@ function Register() {
 const onSubmit = (data) => {
   createUser(data.email, data.password)
     .then(async(result) => {
-      console.log(result.user);
       setName(data.name)
       // update userInfo in database
       const userData = {
@@ -35,9 +34,7 @@ const onSubmit = (data) => {
    try {
     const res = await axiosInstance.post("/users", userData);
     if (res.data.inserted) {
-      console.log("New user saved to DB");
     } else {
-      console.log("User already exists in DB");
     }
   } catch (error) {
     console.error("Error saving user:", error);
@@ -50,10 +47,8 @@ const onSubmit = (data) => {
 
       updateUserProfile(userProfile)
         .then(() => {
-          console.log("user name and profile updated");
         })
         .catch((error) => {
-          console.log(error);
         });
         toast.success("Successfully registered")
         navigate('/')
@@ -66,7 +61,6 @@ const onSubmit = (data) => {
 
         const handleUploadImage = async(e) =>{
           const image = e.target.files[0];
-          console.log(image);
           const formData = new FormData();
           formData.append('image',image);
  const uploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_key}`;
@@ -75,7 +69,6 @@ const onSubmit = (data) => {
     const res = await axios.post(uploadUrl,formData);
 
     setProfile(res.data.data.url);
-    console.log(profile)
    
   } catch (error) {
     console.error("Error uploading image:", error);

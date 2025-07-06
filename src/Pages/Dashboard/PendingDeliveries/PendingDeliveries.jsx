@@ -15,11 +15,9 @@ function PendingDeliveries() {
     queryKey: ['pendingDeliveries', user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/riders/${user.email}/pending-tasks`);
-      console.log("data",res.data)
       return res.data;
     }
   });
-console.log(parcels)
   const handleUpdateStatus = async (parcel, newStatus) => {
   try {
     const res = await axiosSecure.patch(`/parcels/${parcel._id}/update-status`, {

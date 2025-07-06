@@ -39,7 +39,7 @@ function AssignRider() {
       riderName: rider.name,
       riderEmail: rider.email,
     });
-    console.log(res)
+    
     if (res.data.parcelResult.modifiedCount > 0) {
       await Swal.fire({
         icon: 'success',

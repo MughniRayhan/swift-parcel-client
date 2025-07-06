@@ -14,7 +14,6 @@ function SocialLogin() {
         signInWithGoogle()
         .then(async(result) => {
             const user = result.user;
-            console.log(user);
 
      // update userInfo in database
     const userData = {
@@ -29,9 +28,8 @@ function SocialLogin() {
   try {
     const res = await axiosInstance.post("/users", userData);
     if (res.data.inserted) {
-      console.log("New user saved to DB");
     } else {
-      console.log("User already exists in DB");
+      
     }
   } catch (error) {
     console.error("Error saving user:", error);

@@ -3,7 +3,7 @@ import React from 'react'
 
 function UseAxios() {
     const axiosInstance = axios.create({
-        baseURL: 'http://localhost:3000/'
+        baseURL: 'https://swift-parcel-server-kappa.vercel.app/'
     })
   return axiosInstance;
 }

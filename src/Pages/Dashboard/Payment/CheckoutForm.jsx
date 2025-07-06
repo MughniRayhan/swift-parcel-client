@@ -80,12 +80,12 @@ function CheckoutForm() {
       });
 
       if (result.error) {
-        console.log(result.error.message);
+        
         setError(result.error.message);
         setProcessing(false);
       } else {
         if (result.paymentIntent.status === 'succeeded') {
-          console.log("Payment succeeded", result.paymentIntent);
+         
           const transactionId = result.paymentIntent.id;
 
           const paymentData = {
